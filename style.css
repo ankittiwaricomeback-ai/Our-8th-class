@@ -1,0 +1,60 @@
+.student-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.student-card {
+  background: #f7faff;
+  border: 1px solid #dbe8f5;
+  border-radius: 15px;
+  padding: 16px;
+  min-width: 0;
+}
+
+.student-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.student-avatar {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: #dceeff;
+  color: #176ba7;
+  font-size: 19px;
+  font-weight: bold;
+}
+
+.student-name {
+  font-size: 16px;
+  font-weight: bold;
+  overflow-wrap: anywhere;
+}
+
+.username-label {
+  color: #64748b;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.username-value {
+  background: white;
+  border: 1px solid #e1e9f1;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.directory-count {
+  color: #64748b;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
