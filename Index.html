@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Class Portal</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f0f5ff;
+      color: #172554;
+    }
+    header {
+      background: #1d4ed8;
+      color: white;
+      text-align: center;
+      padding: 28px 15px;
+    }
+    header h1 { margin: 0 0 8px; }
+    main {
+      max-width: 800px;
+      margin: 25px auto;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      padding: 22px;
+      margin-bottom: 20px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px #00000010;
+    }
+    input, button {
+      width: 100%;
+      padding: 13px;
+      margin-top: 10px;
+      border-radius: 9px;
+      font-size: 16px;
+    }
+    input { border: 1px solid #cbd5e1; }
+    button {
+      border: 0;
+      background: #2563eb;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover { background: #1e40af; }
+    .hidden { display: none; }
+    .student {
+      padding: 13px;
+      margin: 10px 0;
+      border: 1px solid #dbeafe;
+      border-radius: 10px;
+      overflow-wrap: anywhere;
+    }
+    .muted { color: #64748b; font-size: 14px; }
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #64748b;
+    }
+    #message { color: #dc2626; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🎓 Our Class Portal</h1>
+    <p>Learn together. Grow together.</p>
+    <p>Teacher: Shri Govind Raut</p>
+  </header>
+
+  <main>
+    <section class="card" id="login">
+      <h2>🔐 Student Login</h2>
+      <p>Enter the class password to continue.</p>
+      <input id="password" type="password"
+             placeholder="Enter class password">
+      <button onclick="login()">Unlock Portal</button>
+      <p id="message"></p>
+      <p class="muted">
+        Demo only: this browser-based password is not secure.
+      </p>
+    </section>
+
+    <section id="portal" class="hidden">
+      <div class="card">
+        <h2>📚 Student Directory</h2>
+        <p class="muted">Replace the sample entries with approved class information.</p>
+        <div id="students"></div>
+      </div>
+
+      <div class="card">
+        <h2>🗓️ Exam Schedule</h2>
+        <div id="exams"></div>
+      </div>
+
+      <button onclick="logout()">Log Out</button>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>Created by Ankit Tiwari</strong></p>
+    <p>Co powered by Darpan, Anshu</p>
+    <p>Made for our class ❤️</p>
+  </footer>
+
+  <script>
+    // Demo password only. Do not use this for confidential information.
+    const CLASS_PASSWORD = "class2026";
+
+    // Replace these sample entries with information shared with permission.
+    const students = [
+      { name: "Student 1", khan: "Add Khan Academy username" },
+      { name: "Student 2", khan: "Add Khan Academy username" },
+      { name: "Student 3", khan: "Add Khan Academy username" }
+    ];
+
+    // Replace sample dates with confirmed exam dates.
+    const exams = [
+      { subject: "Mathematics", date: "To be announced" },
+      { subject: "Science", date: "To be announced" },
+      { subject: "English", date: "To be announced" }
+    ];
+
+    function login() {
+      const entered = document.getElementById("password").value;
+
+      if (entered === CLASS_PASSWORD) {
+        document.getElementById("login").classList.add("hidden");
+        document.getElementById("portal").classList.remove("hidden");
+        document.getElementById("message").textContent = "";
+        renderStudents();
+        renderExams();
+      } else {
+        document.getElementById("message").textContent =
+          "Incorrect password. Please try again.";
+      }
+    }
+
+    function logout() {
+      document.getElementById("portal").classList.add("hidden");
+      document.getElementById("login").classList.remove("hidden");
+      document.getElementById("password").value = "";
+    }
+
+    function renderStudents() {
+      const container = document.getElementById("students");
+      container.replaceChildren();
+
+      students.forEach(student => {
+        const item = document.createElement("div");
+        item.className = "student";
+
+        const name = document.createElement("strong");
+        name.textContent = student.name;
+
+        const username = document.createElement("p");
+        username.textContent = "Khan Academy: " + student.khan;
+
+        item.append(name, username);
+        container.appendChild(item);
+      });
+    }
+
+    function renderExams() {
+      const container = document.getElementById("exams");
+      container.replaceChildren();
+
+      exams.forEach(exam => {
+        const item = document.createElement("div");
+        item.className = "student";
+        item.textContent = exam.subject + " — " + exam.date;
+        container.appendChild(item);
+      });
+    }
+  </script>
+</body>
+</html>
