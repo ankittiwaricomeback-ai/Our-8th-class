@@ -1,180 +1,372 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Class Portal</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f0f5ff;
-      color: #172554;
-    }
-    header {
-      background: #1d4ed8;
-      color: white;
-      text-align: center;
-      padding: 28px 15px;
-    }
-    header h1 { margin: 0 0 8px; }
-    main {
-      max-width: 800px;
-      margin: 25px auto;
-      padding: 20px;
-    }
-    .card {
-      background: white;
-      padding: 22px;
-      margin-bottom: 20px;
-      border-radius: 16px;
-      box-shadow: 0 4px 15px #00000010;
-    }
-    input, button {
-      width: 100%;
-      padding: 13px;
-      margin-top: 10px;
-      border-radius: 9px;
-      font-size: 16px;
-    }
-    input { border: 1px solid #cbd5e1; }
-    button {
-      border: 0;
-      background: #2563eb;
-      color: white;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    button:hover { background: #1e40af; }
-    .hidden { display: none; }
-    .student {
-      padding: 13px;
-      margin: 10px 0;
-      border: 1px solid #dbeafe;
-      border-radius: 10px;
-      overflow-wrap: anywhere;
-    }
-    .muted { color: #64748b; font-size: 14px; }
-    footer {
-      text-align: center;
-      padding: 25px;
-      color: #64748b;
-    }
-    #message { color: #dc2626; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Class Portal</title>
+<style>
+:root {
+  --blue: #176ba7;
+  --dark: #17344a;
+  --bg: #f1f6fc;
+  --border: #dce6ef;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--dark);
+}
+header {
+  padding: 34px 22px 55px;
+  color: white;
+  background: linear-gradient(120deg,#15558b,#087bb0);
+}
+.eyebrow {
+  letter-spacing: 3px;
+  font-size: 13px;
+  font-weight: bold;
+}
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 22px;
+}
+.hero-icon {
+  font-size: 35px;
+  background: #ffffff25;
+  border-radius: 22px;
+  padding: 13px;
+}
+h1 { margin: 0; font-size: 32px; }
+header p { font-size: 17px; line-height: 1.5; }
+main {
+  max-width: 800px;
+  margin: -28px auto 30px;
+  padding: 0 16px;
+  position: relative;
+}
+.card {
+  background: white;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  box-shadow: 0 5px 20px #16344a0a;
+  margin-bottom: 18px;
+}
+h2 { margin-top: 0; font-size: 25px; }
+p { line-height: 1.6; }
+input, textarea, button {
+  font: inherit;
+  width: 100%;
+  border-radius: 12px;
+  padding: 14px;
+}
+input, textarea {
+  border: 1px solid #cbd7e2;
+  margin: 8px 0;
+  background: white;
+  color: var(--dark);
+}
+button {
+  border: 0;
+  cursor: pointer;
+  font-weight: bold;
+}
+.primary {
+  background: var(--blue);
+  color: white;
+  margin-top: 12px;
+}
+.primary:hover { background: #105481; }
+.muted { color: #6b7b89; font-size: 14px; }
+.warning {
+  background: #fff7e7;
+  border: 1px solid #f0dca8;
+  color: #715b2d;
+  border-radius: 15px;
+  padding: 16px;
+  line-height: 1.6;
+}
+.hidden { display: none !important; }
+.menu {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.menu button {
+  background: white;
+  color: var(--dark);
+  border: 1px solid var(--border);
+  text-align: left;
+  padding: 17px 14px;
+  min-height: 100px;
+  box-shadow: 0 3px 10px #00000005;
+}
+.menu button.active {
+  background: #e3f1ff;
+  border: 2px solid var(--blue);
+}
+.menu .emoji { display: block; font-size: 27px; margin-bottom: 9px; }
+.menu small { display: block; font-weight: normal; color: #6b7b89; margin-top: 5px; }
+.item {
+  border: 1px solid var(--border);
+  padding: 15px;
+  margin: 12px 0;
+  border-radius: 13px;
+  overflow-wrap: anywhere;
+}
+.item h3 { margin: 0 0 8px; }
+.item p { margin: 5px 0; }
+.back {
+  width: auto;
+  background: #e9f2fb;
+  color: var(--blue);
+  margin-bottom: 16px;
+  padding: 10px 15px;
+}
+footer {
+  text-align: center;
+  padding: 20px 15px 35px;
+  color: #708090;
+}
+footer strong { color: var(--dark); }
+@media (min-width: 600px) {
+  .menu { grid-template-columns: repeat(4,minmax(0,1fr)); }
+  h1 { font-size: 39px; }
+}
+</style>
 </head>
 <body>
-  <header>
-    <h1>🎓 Our Class Portal</h1>
-    <p>Learn together. Grow together.</p>
-    <p>Teacher: Shri Govind Raut</p>
-  </header>
 
-  <main>
-    <section class="card" id="login">
-      <h2>🔐 Student Login</h2>
-      <p>Enter the class password to continue.</p>
-      <input id="password" type="password"
-             placeholder="Enter class password">
-      <button onclick="login()">Unlock Portal</button>
-      <p id="message"></p>
-      <p class="muted">
-        Demo only: this browser-based password is not secure.
-      </p>
+<header>
+  <div class="eyebrow">LEARN · PREPARE · ACHIEVE</div>
+  <div class="hero">
+    <div class="hero-icon">📘</div>
+    <div>
+      <h1>Our Class Portal</h1>
+      <p>A shared place for class information and exam updates.</p>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- LOGIN -->
+  <section class="card" id="login">
+    <h2>Welcome back</h2>
+    <p>Enter the class password to open the student directory and exam schedule.</p>
+    <label for="password"><strong>Class password</strong></label>
+    <input id="password" type="password" placeholder="Enter password"
+           autocomplete="current-password">
+    <button class="primary" onclick="login()">Unlock class portal →</button>
+    <p id="error" style="color:#c62828"></p>
+    <p class="muted">Demo password: <strong>CLASS2026</strong></p>
+    <div class="warning">
+      Demo only: the password is built into this page and is not secure
+      for real student information.
+    </div>
+  </section>
+
+  <!-- PORTAL -->
+  <section id="portal" class="hidden">
+    <div class="menu" id="menu">
+      <button class="active" onclick="showSection('notices',this)">
+        <span class="emoji">📢</span>
+        Important Notice
+        <small>Announcements</small>
+      </button>
+      <button onclick="showSection('students',this)">
+        <span class="emoji">🎓</span>
+        Khan Academy
+        <small>Student directory</small>
+      </button>
+      <button onclick="showSection('exams',this)">
+        <span class="emoji">🗓️</span>
+        Exam Schedule
+        <small>Subjects and dates</small>
+      </button>
+      <button onclick="showSection('notes',this)">
+        <span class="emoji">📝</span>
+        Notes
+        <small>Study materials</small>
+      </button>
+    </div>
+
+    <!-- NOTICE SECTION -->
+    <section class="card content" id="notices">
+      <h2>📢 Important Notice</h2>
+      <p class="muted">Class announcements and reminders.</p>
+      <div id="noticeList"></div>
     </section>
 
-    <section id="portal" class="hidden">
-      <div class="card">
-        <h2>📚 Student Directory</h2>
-        <p class="muted">Replace the sample entries with approved class information.</p>
-        <div id="students"></div>
-      </div>
-
-      <div class="card">
-        <h2>🗓️ Exam Schedule</h2>
-        <div id="exams"></div>
-      </div>
-
-      <button onclick="logout()">Log Out</button>
+    <!-- STUDENTS SECTION -->
+    <section class="card content hidden" id="students">
+      <h2>🎓 Khan Academy Students</h2>
+      <p class="muted">Find class members and their Khan Academy usernames.</p>
+      <input id="studentSearch" placeholder="Search student name..."
+             oninput="renderStudents()">
+      <div id="studentList"></div>
     </section>
-  </main>
 
-  <footer>
-    <p><strong>Created by Ankit Tiwari</strong></p>
-    <p>Co powered by Darpan, Anshu</p>
-    <p>Made for our class ❤️</p>
-  </footer>
+    <!-- EXAMS SECTION -->
+    <section class="card content hidden" id="exams">
+      <h2>🗓️ Exam Schedule</h2>
+      <p class="muted">Check upcoming tests and examination dates.</p>
+      <div id="examList"></div>
+    </section>
 
-  <script>
-    // Demo password only. Do not use this for confidential information.
-    const CLASS_PASSWORD = "class2026";
+    <!-- NOTES SECTION -->
+    <section class="card content hidden" id="notes">
+      <h2>📝 Class Notes</h2>
+      <p class="muted">Revision points and study resources.</p>
+      <div id="noteList"></div>
+    </section>
 
-    // Replace these sample entries with information shared with permission.
-    const students = [
-      { name: "Student 1", khan: "Add Khan Academy username" },
-      { name: "Student 2", khan: "Add Khan Academy username" },
-      { name: "Student 3", khan: "Add Khan Academy username" }
-    ];
+    <button class="primary" onclick="logout()">Log out</button>
+  </section>
+</main>
 
-    // Replace sample dates with confirmed exam dates.
-    const exams = [
-      { subject: "Mathematics", date: "To be announced" },
-      { subject: "Science", date: "To be announced" },
-      { subject: "English", date: "To be announced" }
-    ];
+<footer>
+  <p>Made for our class</p>
+  <p><strong>Created by Ankit Tiwari</strong></p>
+  <p>Co-powered by Darpan &amp; Anshu</p>
+  <p>Teacher: Shri Govind Raut</p>
+</footer>
 
-    function login() {
-      const entered = document.getElementById("password").value;
+<script>
+// DEMO PASSWORD ONLY — not real security.
+const CLASS_PASSWORD = "CLASS2026";
 
-      if (entered === CLASS_PASSWORD) {
-        document.getElementById("login").classList.add("hidden");
-        document.getElementById("portal").classList.remove("hidden");
-        document.getElementById("message").textContent = "";
-        renderStudents();
-        renderExams();
-      } else {
-        document.getElementById("message").textContent =
-          "Incorrect password. Please try again.";
-      }
-    }
+// EDIT THESE EXAMPLES WITH APPROVED CLASS INFORMATION.
+const notices = [
+  {
+    title: "Welcome to Our Class Portal",
+    date: "Class Update",
+    text: "Check this section regularly for important announcements."
+  },
+  {
+    title: "Study Reminder",
+    date: "Reminder",
+    text: "Complete your classwork and prepare for upcoming tests."
+  }
+];
 
-    function logout() {
-      document.getElementById("portal").classList.add("hidden");
-      document.getElementById("login").classList.remove("hidden");
-      document.getElementById("password").value = "";
-    }
+const students = [
+  { name: "Student 1", username: "Add username" },
+  { name: "Student 2", username: "Add username" },
+  { name: "Student 3", username: "Add username" }
+];
 
-    function renderStudents() {
-      const container = document.getElementById("students");
-      container.replaceChildren();
+const exams = [
+  { subject: "Mathematics", date: "To be announced", details: "Syllabus: To be announced" },
+  { subject: "Science", date: "To be announced", details: "Syllabus: To be announced" },
+  { subject: "English", date: "To be announced", details: "Syllabus: To be announced" }
+];
 
-      students.forEach(student => {
-        const item = document.createElement("div");
-        item.className = "student";
+const notes = [
+  { title: "Mathematics", text: "Add your mathematics revision notes here." },
+  { title: "Science", text: "Add your science revision notes here." },
+  { title: "English", text: "Add your English revision notes here." }
+];
 
-        const name = document.createElement("strong");
-        name.textContent = student.name;
+function login() {
+  const value = document.getElementById("password").value;
+  if (value === CLASS_PASSWORD) {
+    document.getElementById("login").classList.add("hidden");
+    document.getElementById("portal").classList.remove("hidden");
+    document.getElementById("error").textContent = "";
+    renderAll();
+  } else {
+    document.getElementById("error").textContent =
+      "Incorrect password. Please try again.";
+  }
+}
 
-        const username = document.createElement("p");
-        username.textContent = "Khan Academy: " + student.khan;
+document.getElementById("password").addEventListener("keydown", event => {
+  if (event.key === "Enter") login();
+});
 
-        item.append(name, username);
-        container.appendChild(item);
-      });
-    }
+function logout() {
+  document.getElementById("portal").classList.add("hidden");
+  document.getElementById("login").classList.remove("hidden");
+  document.getElementById("password").value = "";
+}
 
-    function renderExams() {
-      const container = document.getElementById("exams");
-      container.replaceChildren();
+function showSection(id, button) {
+  document.querySelectorAll(".content").forEach(section => {
+    section.classList.add("hidden");
+  });
+  document.getElementById(id).classList.remove("hidden");
 
-      exams.forEach(exam => {
-        const item = document.createElement("div");
-        item.className = "student";
-        item.textContent = exam.subject + " — " + exam.date;
-        container.appendChild(item);
-      });
-    }
-  </script>
+  document.querySelectorAll("#menu button").forEach(btn => {
+    btn.classList.remove("active");
+  });
+  button.classList.add("active");
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function addItem(container, title, lines) {
+  const item = document.createElement("article");
+  item.className = "item";
+
+  const heading = document.createElement("h3");
+  heading.textContent = title;
+  item.appendChild(heading);
+
+  lines.forEach(line => {
+    const p = document.createElement("p");
+    p.textContent = line;
+    item.appendChild(p);
+  });
+
+  container.appendChild(item);
+}
+
+function renderAll() {
+  const noticeList = document.getElementById("noticeList");
+  noticeList.replaceChildren();
+  notices.forEach(n => addItem(noticeList, n.title, [n.date, n.text]));
+
+  renderStudents();
+
+  const examList = document.getElementById("examList");
+  examList.replaceChildren();
+  exams.forEach(e => addItem(examList, e.subject, [e.date, e.details]));
+
+  const noteList = document.getElementById("noteList");
+  noteList.replaceChildren();
+  notes.forEach(n => addItem(noteList, n.title, [n.text]));
+}
+
+function renderStudents() {
+  const list = document.getElementById("studentList");
+  list.replaceChildren();
+
+  const query = document.getElementById("studentSearch").value
+    .trim().toLowerCase();
+
+  const filtered = students.filter(s =>
+    s.name.toLowerCase().includes(query)
+  );
+
+  if (filtered.length === 0) {
+    const p = document.createElement("p");
+    p.textContent = "No students found.";
+    list.appendChild(p);
+    return;
+  }
+
+  filtered.forEach(s =>
+    addItem(list, s.name, ["Khan Academy username: " + s.username])
+  );
+}
+
+renderAll();
+</script>
 </body>
 </html>
