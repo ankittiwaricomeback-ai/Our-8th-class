@@ -229,7 +229,24 @@ footer strong { color: var(--dark); }
   Student Directory
   <small>Names & addresses</small>
     </button>
+<section class="card content hidden" id="addresses">
+  <h2>👥 Student Directory</h2>
+  <p class="muted">
+    Student names and contact details.
+  </p>
 
+  <input
+    id="addressSearch"
+    placeholder="Search student name..."
+    oninput="renderAddresses()"
+  >
+
+  <div id="addressList"></div>
+  <p class="muted">
+    For student privacy, home addresses should only be
+    available to authorized people.
+  </p>
+</section>
     <button class="primary" onclick="logout()">Log out</button>
   </section>
 </main>
