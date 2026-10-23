@@ -376,6 +376,127 @@ const notes = [
   { title: "Science", text: "Add your science revision notes here." },
   { title: "English", text: "Add your English revision notes here." }
 ];
+  
+const studentNames = [
+  "Afaque",
+  "Aliya Ansari",
+  "Alika Khan",
+  "Altamash Khan",
+  "Anjali Gupta",
+  "Ankit Tiwari",
+  "Arham Khan",
+  "Ashraf Khan",
+  "Ashwin Giri",
+  "Avesh Miya",
+  "Avesh Samsuya",
+  "Ayan Rajeen",
+  "Ayan Shaikh",
+  "Chandni Shaikh",
+  "Chandrakant Chaudhary",
+  "Chetkin Dhi Ramesh",
+  "Dinesh Kahar",
+  "Faiyaz Shaikh",
+  "Fardin Khan",
+  "Ghulam Ghaus",
+  "Gound Darpan",
+  "Gupta Anshu",
+  "Gupta Komal",
+  "Gupta Piyali",
+  "Hanif Idrisi",
+  "Hamzauddin Shaikh",
+  "Husna Pahankhan",
+  "Junaid Shaikh",
+  "Kachela Lalit",
+  "Kamat Vikas",
+  "Khan Altamash",
+  "Khan Fardin",
+  "Khan Hiba",
+  "Khan Md. Raza",
+  "Khan Misbah",
+  "Khan Shad",
+  "Khan Sufiyan",
+  "Khan Vaish",
+  "Khan Zoya",
+  "Komal Gupta",
+  "Mahak Pasi",
+  "Md. Savir",
+  "Misbah Khan",
+  "Mohite Sarthak",
+  "Mudassir Shaikh",
+  "Muskan Islam Shaikh",
+  "Muskan Zahid Shaikh",
+  "Owais Shaikh",
+  "Pasi Mahak",
+  "Rajput Zuber",
+  "Ram Krishna Lodhi",
+  "Raza Khan",
+  "Riya God",
+  "Rizwan Chavan",
+  "S. Kahar Dinesh",
+  "Sahana Khatun Shaikh",
+  "Sana",
+  "Saniya Sanjay Gautam",
+  "Sarthak Mohite",
+  "Sadiya Shaikh",
+  "Shad Qureshi",
+  "Shaikh Ausaf",
+  "Shaikh Axfat",
+  "Shaikh Sadiya",
+  "Shaikh Sufiya",
+  "Shaikh Zohra",
+  "Shifa Sayyed",
+  "Soni Seema",
+  "Sonali Manna",
+  "Sufiyan Khan",
+  "Tahid Shaikh",
+  "Tiwari Ankit",
+  "Umar Shaikh",
+  "Vaish Khan",
+  "Vikas Kamat",
+  "Zohra Shaikh",
+  "Zuber Rajput"
+];
+
+studentNames.sort((a, b) => a.localeCompare(b));
+
+function renderAddresses() {
+  const list = document.getElementById("addressList");
+  const search = document.getElementById("addressSearch");
+  const count = document.getElementById("addressCount");
+
+  if (!list || !search || !count) return;
+
+  const query = search.value.trim().toLowerCase();
+  const filtered = studentNames.filter(name =>
+    name.toLowerCase().includes(query)
+  );
+
+  list.replaceChildren();
+  count.textContent = `${filtered.length} students found`;
+
+  filtered.forEach(name => {
+    const card = document.createElement("div");
+    card.className = "student-card";
+
+    const letter = document.createElement("div");
+    letter.className = "student-letter";
+    letter.textContent = name.charAt(0).toUpperCase();
+
+    const label = document.createElement("strong");
+    label.textContent = name;
+
+    card.append(letter, label);
+    list.appendChild(card);
+  });
+}
+
+function backToMenu() {
+  document.getElementById("addresses").classList.add("hidden");
+  document.getElementById("menu").classList.remove("hidden");
+}
+
+renderAddresses();
+  
 
 function login() {
   const value = document.getElementById("password").value;
