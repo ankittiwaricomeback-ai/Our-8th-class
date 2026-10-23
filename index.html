@@ -1,384 +1,331 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#176ba7">
 <title>Our Class Portal</title>
+
 <style>
 :root {
   --blue: #176ba7;
-  --dark: #17344a;
-  --bg: #f1f6fc;
-  --border: #dce6ef;
+  --dark: #104d7a;
+  --light: #e8f3ff;
+  --ink: #1d2b3a;
+  --muted: #66788a;
+  --border: #dbe7f2;
 }
 * { box-sizing: border-box; }
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: var(--bg);
-  color: var(--dark);
+  font-family: system-ui, sans-serif;
+  color: var(--ink);
+  background: #f3f7fb;
+  line-height: 1.5;
 }
-header {
-  padding: 34px 22px 55px;
+button, input { font: inherit; }
+button { cursor: pointer; }
+.hidden { display: none !important; }
+
+.topbar {
+  background: linear-gradient(135deg, var(--dark), var(--blue));
   color: white;
-  background: linear-gradient(120deg,#15558b,#087bb0);
+  text-align: center;
+  padding: 25px 15px;
 }
-.eyebrow {
-  letter-spacing: 3px;
-  font-size: 13px;
-  font-weight: bold;
-}
-.hero {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-top: 22px;
-}
-.hero-icon {
-  font-size: 35px;
-  background: #ffffff25;
-  border-radius: 22px;
-  padding: 13px;
-}
-h1 { margin: 0; font-size: 32px; }
-header p { font-size: 17px; line-height: 1.5; }
-main {
-  max-width: 800px;
-  margin: -28px auto 30px;
-  padding: 0 16px;
-  position: relative;
+.topbar h1 { margin: 0; }
+.topbar p { margin: 7px 0 0; }
+
+.wrap {
+  width: min(960px, calc(100% - 24px));
+  margin: 20px auto 35px;
 }
 .card {
   background: white;
-  padding: 24px;
   border: 1px solid var(--border);
-  border-radius: 24px;
-  box-shadow: 0 5px 20px #16344a0a;
-  margin-bottom: 18px;
+  border-radius: 18px;
+  padding: 20px;
+  margin-bottom: 17px;
+  box-shadow: 0 5px 20px #183e5a08;
 }
-h2 { margin-top: 0; font-size: 25px; }
-p { line-height: 1.6; }
-input, textarea, button {
-  font: inherit;
+.login-card { max-width: 430px; margin: 35px auto; }
+.muted { color: var(--muted); }
+
+label {
+  display: block;
+  font-weight: 650;
+  margin-bottom: 7px;
+}
+input {
   width: 100%;
+  border: 1px solid #cbd9e7;
   border-radius: 12px;
-  padding: 14px;
-}
-input, textarea {
-  border: 1px solid #cbd7e2;
-  margin: 8px 0;
+  padding: 12px 14px;
   background: white;
-  color: var(--dark);
+  margin-bottom: 10px;
 }
-button {
+input:focus {
+  outline: 2px solid #b8ddff;
+  border-color: var(--blue);
+}
+.primary, .back, .logout {
   border: 0;
-  cursor: pointer;
-  font-weight: bold;
+  border-radius: 12px;
+  padding: 11px 16px;
+  font-weight: 700;
 }
 .primary {
+  width: 100%;
   background: var(--blue);
   color: white;
-  margin-top: 12px;
+  margin-top: 5px;
 }
-.primary:hover { background: #105481; }
-.muted { color: #6b7b89; font-size: 14px; }
-.warning {
-  background: #fff7e7;
-  border: 1px solid #f0dca8;
-  color: #715b2d;
-  border-radius: 15px;
-  padding: 16px;
-  line-height: 1.6;
-}
-.hidden { display: none !important; }
+.back { background: var(--light); color: var(--dark); }
+.logout { background: #fff0ee; color: #b42318; }
+.error { color: #b42318; }
+
 .menu {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
   gap: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 .menu button {
-  background: white;
-  color: var(--dark);
-  border: 1px solid var(--border);
-  text-align: left;
-  padding: 17px 14px;
   min-height: 100px;
-  box-shadow: 0 3px 10px #00000005;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  background: white;
+  color: var(--ink);
+  text-align: left;
+  font-weight: 750;
 }
-.menu button.active {
-  background: #e3f1ff;
-  border: 2px solid var(--blue);
+.menu button.active, .menu button:hover {
+  background: var(--light);
+  border-color: var(--blue);
 }
-.menu .emoji { display: block; font-size: 27px; margin-bottom: 9px; }
-.menu small { display: block; font-weight: normal; color: #6b7b89; margin-top: 5px; }
+.emoji { display: block; font-size: 25px; margin-bottom: 7px; }
+.menu small {
+  display: block;
+  color: var(--muted);
+  font-weight: 500;
+  margin-top: 4px;
+}
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.section-head h2 { margin: 0; }
+
 .item {
   border: 1px solid var(--border);
-  padding: 15px;
-  margin: 12px 0;
+  background: #fbfdff;
   border-radius: 13px;
+  padding: 14px;
+  margin-top: 12px;
+}
+.item h3 { margin: 0 0 6px; }
+.item p { margin: 5px 0; overflow-wrap: anywhere; }
+
+.directory-header { text-align: center; padding: 12px 0 20px; }
+.directory-icon {
+  width: 68px;
+  height: 68px;
+  margin: 0 auto 12px;
+  display: grid;
+  place-items: center;
+  border-radius: 20px;
+  background: var(--light);
+  font-size: 34px;
+}
+.directory-header h2 { margin: 0 0 6px; }
+.directory-header p { color: var(--muted); margin: 0; }
+
+.student-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+  gap: 12px;
+  margin-top: 15px;
+}
+.student-card {
+  padding: 14px 12px;
+  background: #f7faff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
   overflow-wrap: anywhere;
 }
-.item h3 { margin: 0 0 8px; }
-.item p { margin: 5px 0; }
-.back {
-  width: auto;
-  background: #e9f2fb;
+.student-letter {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  background: var(--light);
   color: var(--blue);
-  margin-bottom: 16px;
-  padding: 10px 15px;
+  font-size: 18px;
+  font-weight: 800;
 }
+.student-card strong { font-size: 14px; }
+
 footer {
   text-align: center;
-  padding: 20px 15px 35px;
-  color: #708090;
+  color: var(--muted);
+  padding: 15px 10px 30px;
+  font-size: 13px;
 }
-footer strong { color: var(--dark); }
-@media (min-width: 600px) {
-  .menu { grid-template-columns: repeat(4,minmax(0,1fr)); }
-  h1 { font-size: 39px; }
+@media (max-width: 480px) {
+  .wrap { width: calc(100% - 16px); margin-top: 12px; }
+  .card { padding: 15px; }
+  .menu { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+  .menu button { padding: 11px; }
+  .student-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
 }
 </style>
 </head>
-<body>
 
-<header>
-  <div class="eyebrow">LEARN · PREPARE · ACHIEVE</div>
-  <div class="hero">
-    <div class="hero-icon">📘</div>
-    <div>
-      <h1>Our Class Portal</h1>
-      <p>A shared place for class information and exam updates.</p>
-    </div>
-  </div>
+<body>
+<header class="topbar">
+  <h1>🎓 Our Class Portal</h1>
+  <p>Learn together • Grow together</p>
 </header>
 
-<main>
-  <!-- LOGIN -->
-  <section class="card" id="login">
-    <h2>Welcome back</h2>
-    <p>Enter the class password to open the student directory and exam schedule.</p>
-    <label for="password"><strong>Class password</strong></label>
-    <input id="password" type="password" placeholder="Enter password"
-           autocomplete="current-password">
-    <button class="primary" onclick="login()">Unlock class portal →</button>
-    <p id="error" style="color:#c62828"></p>
-    <p class="muted">enter: <strong>correct password</strong></p>
-    <div class="warning">
-      about website: this website is for only education and information purpose maked.
-    
+<main class="wrap">
+
+<section id="login" class="card login-card">
+  <h2>Welcome back!</h2>
+  <p class="muted">Enter the class portal password to continue.</p>
+  <form id="loginForm">
+    <label for="password">Portal password</label>
+    <input id="password" type="password"
+      placeholder="Enter password" autocomplete="current-password" required>
+    <button class="primary" type="submit">Login</button>
+    <p id="loginError" class="error hidden" role="alert">
+      Incorrect password. Please try again.
+    </p>
+  </form>
+</section>
+
+<section id="portal" class="hidden">
+  <div class="section-head card">
+    <div>
+      <h2 style="margin:0">Class Dashboard</h2>
+      <p class="muted" style="margin:5px 0 0">Choose a section below.</p>
     </div>
-  </section>
-
-  <!-- PORTAL -->
-  <section id="portal" class="hidden">
-    <div class="menu" id="menu">
-      <button class="active" onclick="showSection('notices',this)">
-        <span class="emoji">📢</span>
-        Important Notice
-        <small>Announcements</small>
-      </button>
-      <button onclick="showSection('students',this)">
-        <span class="emoji">🎓</span>
-        Khan Academy
-        <small>Student directory</small>
-      </button>
-      <button onclick="showSection('exams',this)">
-        <span class="emoji">🗓️</span>
-        Exam Schedule
-        <small>Subjects and dates</small>
-      </button>
-      <button onclick="showSection('notes',this)">
-        <span class="emoji">📝</span>
-        Notes
-        <small>Study materials</small>
-      </button>
-      
-<button onclick="openSection('addresses',this)">
-  <span class="emoji">👥</span>
-  Student Directory
-  <small>Search classmates</small>
-</button>
-      
-
-    <!-- NOTICE SECTION -->
-    <section class="card content" id="notices">
-      <h2>📢 Important Notice</h2>
-      <p class="muted">Class announcements and reminders.</p>
-      <div id="noticeList"></div>
-    </section>
-
-    <!-- STUDENTS SECTION -->
-    <section class="card content hidden" id="students">
-      <h2>🎓 Khan Academy Students</h2>
-      <p class="muted">Find class members and their Khan Academy usernames.</p>
-      <input id="studentSearch" placeholder="Search student name..."
-             oninput="renderStudents()">
-      <div id="studentList"></div>
-    </section>
-
-    <!-- EXAMS SECTION -->
-    <section class="card content hidden" id="exams">
-      <h2>🗓️ Exam Schedule</h2>
-      <p class="muted">Check upcoming tests and examination dates.</p>
-      <div id="examList"></div>
-    </section>
-
-    <!-- NOTES SECTION -->
-    <section class="card content hidden" id="notes">
-      <h2>📝 Class Notes</h2>
-      <p class="muted">Revision points and study resources.</p>
-      <div id="noteList"></div>
-    </section>
-<section class="card content hidden" id="addresses">
-  <button class="back" onclick="backToDirectory()">← All sections</button>
-
-  <div class="directory-header">
-    <div class="directory-icon">🎓</div>
-    <h2>Student Directory</h2>
-    <p>Get to know your classmates</p>
+    <button class="logout" type="button" onclick="logout()">Log out</button>
   </div>
 
-  <input id="addressSearch"
-         placeholder="🔍 Search by student name..."
-         oninput="renderAddresses()">
+  <nav class="menu" id="menu" aria-label="Portal sections">
+    <button type="button" onclick="showSection('notices',this)">
+      <span class="emoji">📢</span>Important Notice
+      <small>Class updates</small>
+    </button>
+    <button type="button" onclick="showSection('khan',this)">
+      <span class="emoji">📚</span>Khan Academy
+      <small>Learning resources</small>
+    </button>
+    <button type="button" onclick="showSection('exams',this)">
+      <span class="emoji">🗓️</span>Exam Schedule
+      <small>Assessment dates</small>
+    </button>
+    <button type="button" onclick="showSection('notes',this)">
+      <span class="emoji">📝</span>Notes
+      <small>Study materials</small>
+    </button>
+    <button type="button" onclick="showSection('addresses',this)">
+      <span class="emoji">👥</span>Student Directory
+      <small>Search classmates</small>
+    </button>
+  </nav>
 
-  <p id="addressCount" class="muted"></p>
-  <div id="addressList" class="student-grid"></div>
-
-  <div id="studentDetails" class="hidden">
-    <button class="back" onclick="backToDirectory()">← Back to students</button>
-    <div id="detailCard"></div>
-  </div>
-</section>
-  </p>
-</section>
-    <button class="primary" onclick="logout()">Log out</button>
+  <section class="card content hidden" id="notices">
+    <h2>📢 Important Notice</h2>
+    <div id="noticeList"></div>
   </section>
+
+  <section class="card content hidden" id="khan">
+    <h2>📚 Khan Academy</h2>
+    <p>Practise lessons and strengthen your skills.</p>
+    <p><a href="https://www.khanacademy.org/" target="_blank" rel="noopener noreferrer">Open Khan Academy ↗</a></p>
+    <label for="studentSearch">Search learning list</label>
+    <input id="studentSearch" type="search"
+      placeholder="Search student name..." oninput="renderStudents()">
+    <div id="studentList"></div>
+    <p class="muted">No student passwords should be stored here.</p>
+  </section>
+
+  <section class="card content hidden" id="exams">
+    <h2>🗓️ Exam Schedule</h2>
+    <p class="muted">First Term Assessment — CCE-01</p>
+    <div id="examList"></div>
+  </section>
+
+  <section class="card content hidden" id="notes">
+    <h2>📝 Notes</h2>
+    <div id="noteList"></div>
+    <p class="muted">Teacher-approved notes and study links can be added here.</p>
+  </section>
+
+  <section class="card content hidden" id="addresses">
+    <button class="back" type="button" onclick="backToMenu()">← Back to Menu</button>
+    <div class="directory-header">
+      <div class="directory-icon">🎓</div>
+      <h2>Student Directory</h2>
+      <p>Find classmates by name</p>
+    </div>
+    <input id="addressSearch" type="search"
+      placeholder="🔍 Search student name..."
+      aria-label="Search student names" oninput="renderAddresses()">
+    <p id="addressCount" class="muted" aria-live="polite"></p>
+    <div id="addressList" class="student-grid"></div>
+    <p class="muted">Names only. Phone numbers and home addresses are not displayed.</p>
+  </section>
+</section>
 </main>
 
 <footer>
-  <p>Made for our class</p>
-  <p><strong>Created by Ankit Tiwari</strong></p>
-  <p>Co-powered by Darpan &amp; Anshu</p>
-  <p>Teacher: Shri Govind Raut</p>
+  Created by Ankit Tiwari · Co-powered by Darpan &amp; Anshu<br>
+  Teacher: Shri Govind Raut
 </footer>
 
 <script>
-// DEMO PASSWORD ONLY — not real security.
-const CLASS_PASSWORD = "CLASS2026";
+// This front-end password is NOT secure authentication.
+// GitHub Pages source code is public. Do not store confidential information here.
+const PORTAL_PASSWORD = "CLASS2026";
 
-// EDIT THESE EXAMPLES WITH APPROVED CLASS INFORMATION.
 const notices = [
   {
-    title: "Welcome to Our Class Portal",
-    date: "Class Update",
-    text: "Check this section regularly for important announcements."
-  },
-  {
-    title: "Study Reminder",
-    date: "Reminder",
-    text: "Complete your classwork and prepare for upcoming tests."
+    title: "Welcome to the Class Portal",
+    date: "Class updates",
+    text: "Check this portal for notices, learning resources and assessment dates."
   }
 ];
 
-const students = [
-  {name:"Aditi Kuchekar",username:"aditikuchekar3"},
-  {name:"Aliya Ansari",username:"aliyaansari259"},
-  {name:"Alika Khan",username:"alikakhan6"},
-  {name:"Altamash Khan",username:"altamashkhan98"},
-  {name:"Anjali Gupta",username:"anjaligupta5685"},
-  {name:"Ankit Tiwari",username:"ankittiwari27"},
-  {name:"Arfa Shaikh",username:"VERIFY_USERNAME"},
-  {name:"Arham Khan",username:"arhamkhan38"},
-  {name:"Ashraf Khan",username:"ashrafkhan32"},
-  {name:"Awasaf Shaikh",username:"awasafshaikh"},
-  {name:"Dinesh Kahar",username:"dineshkahar"},
-  {name:"Fardin Khan",username:"fardinkhan56"},
-  {name:"Hanif Idrisi",username:"hanifidrisi3"},
-  {name:"Komal Gupta",username:"komalgupta8"},
-  {name:"Mahak Pasi",username:"mahekpasi4"},
-  {name:"Md Savir",username:"mdsavir"},
-  {name:"Misbah Khan",username:"misbahkhan27"},
-  {name:"Mudassir Shaikh",username:"mudassirshaikh04"},
-  {name:"Payal Chaudhari",username:"payalchaudhari6"},
-  {name:"Raza Khan",username:"razakhan70"},
-  {name:"Riya God",username:"riyagod"},
-  {name:"Rizwa Chawan",username:"rizwachawan"},
-  {name:"Sadiya Shaikh",username:"sadiyashaikh274"},
-  {name:"Saima Saifi",username:"saimasaifi"},
-  {name:"Samiya Shaikh",username:"samiyashaikh52"},
-  {name:"Sanno",username:"sanno30"},
-  {name:"Sarthak Mohite",username:"sarthakmohite80"},
-  {name:"Shad Khan",username:"shadkhan2"},
-  {name:"Sk Ashik Ali",username:"skashikali"},
-  {name:"Sufiyan Khan",username:"sufiyankhan610"},
-  {name:"Sumayya Ansari",username:"sumayyaansari43"},
-  {name:"Vaish Khan",username:"vaishkhan"},
-  {name:"Vikas Kamat",username:"vikaskamat"},
-  {name:"Zohra Shaikh",username:"zohrashaikh6"},
-  {name:"Zuber Rajput",username:"zuberrajput"}
-].sort((a,b)=>a.name.localeCompare(b.name));
-
+// Add verified usernames here if needed:
+// { name: "Student Name", username: "username" }
+const students = [];
 
 const exams = [
-  {
-    subject: "Craft",
-    date: "28/10/2026",
-    day: "Wednesday",
-    details: "First Term Assessment — CCE-01"
-  },
-  {
-    subject: "Drawing",
-    date: "29/10/2026",
-    day: "Thursday",
-    details: "First Term Assessment — CCE-01"
-  },
-  {
-    subject: "Science",
-    date: "30/10/2026",
-    day: "Friday",
-    details: "First Term Assessment — CCE-01"
-  },
-  {
-    subject: "Marathi",
-    date: "31/10/2026",
-    day: "Saturday",
-    details: "First Term Assessment — CCE-01"
-  },
-  {
-    subject: "Social Science",
-    date: "02/11/2026",
-    day: "Monday",
-    details: "First Term Assessment — CCE-01"
-  },
-  {
-    subject: "Hindi",
-    date: "03/11/2026",
-    day: "Tuesday",
-    details: "First Term Assessment — CCE-01"
-  },
-  {
-    subject: "English",
-    date: "26/11/2026",
-    day: "Thursday",
-    details: "First Term Assessment — CCE-01"
-  },
-  {
-    subject: "Mathematics",
-    date: "27/11/2026",
-    day: "Friday",
-    details: "First Term Assessment — CCE-01"
-  }
+  { subject: "Craft", date: "28/10/2026 — Wednesday", details: "First Term Assessment — CCE-01" },
+  { subject: "Drawing", date: "29/10/2026 — Thursday", details: "First Term Assessment — CCE-01" },
+  { subject: "Science", date: "30/10/2026 — Friday", details: "First Term Assessment — CCE-01" },
+  { subject: "Marathi", date: "31/10/2026 — Saturday", details: "First Term Assessment — CCE-01" },
+  { subject: "Social Science", date: "02/11/2026 — Monday", details: "First Term Assessment — CCE-01" },
+  { subject: "Hindi", date: "03/11/2026 — Tuesday", details: "First Term Assessment — CCE-01" },
+  { subject: "English", date: "26/11/2026 — Thursday", details: "First Term Assessment — CCE-01" },
+  { subject: "Mathematics", date: "27/11/2026 — Friday", details: "First Term Assessment — CCE-01" }
 ];
 
 const notes = [
-  { title: "Mathematics", text: "Add your mathematics revision notes here." },
-  { title: "Science", text: "Add your science revision notes here." },
-  { title: "English", text: "Add your English revision notes here." }
+  { title: "Study Materials", text: "Class notes and teacher-approved resources can be added here." }
 ];
-  
-const studentNames = [
+
+// Student names only. Verify spelling and duplicates before publishing.
+const directoryNames = [
   "Afaque",
   "Aliya Ansari",
   "Alika Khan",
@@ -456,84 +403,59 @@ const studentNames = [
   "Vikas Kamat",
   "Zohra Shaikh",
   "Zuber Rajput"
-];
+].sort((a,b) => a.localeCompare(b, "en", { sensitivity: "base" }));
 
-studentNames.sort((a, b) => a.localeCompare(b));
-
-function renderAddresses() {
-  const list = document.getElementById("addressList");
-  const search = document.getElementById("addressSearch");
-  const count = document.getElementById("addressCount");
-
-  if (!list || !search || !count) return;
-
-  const query = search.value.trim().toLowerCase();
-  const filtered = studentNames.filter(name =>
-    name.toLowerCase().includes(query)
-  );
-
-  list.replaceChildren();
-  count.textContent = `${filtered.length} students found`;
-
-  filtered.forEach(name => {
-    const card = document.createElement("div");
-    card.className = "student-card";
-
-    const letter = document.createElement("div");
-    letter.className = "student-letter";
-    letter.textContent = name.charAt(0).toUpperCase();
-
-    const label = document.createElement("strong");
-    label.textContent = name;
-
-    card.append(letter, label);
-    list.appendChild(card);
-  });
-}
-
-function backToMenu() {
-  document.getElementById("addresses").classList.add("hidden");
-  document.getElementById("menu").classList.remove("hidden");
-}
-
-renderAddresses();
-  
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+  login();
+});
 
 function login() {
-  const value = document.getElementById("password").value;
-  if (value === CLASS_PASSWORD) {
+  const entered = document.getElementById("password").value;
+  const error = document.getElementById("loginError");
+
+  if (entered === PORTAL_PASSWORD) {
     document.getElementById("login").classList.add("hidden");
     document.getElementById("portal").classList.remove("hidden");
-    document.getElementById("error").textContent = "";
-    renderAll();
+    error.classList.add("hidden");
+    showSection("notices", document.querySelector("#menu button"));
   } else {
-    document.getElementById("error").textContent =
-      "Incorrect password. Please try again.";
+    error.classList.remove("hidden");
   }
 }
-
-document.getElementById("password").addEventListener("keydown", event => {
-  if (event.key === "Enter") login();
-});
 
 function logout() {
   document.getElementById("portal").classList.add("hidden");
   document.getElementById("login").classList.remove("hidden");
   document.getElementById("password").value = "";
+  document.getElementById("loginError").classList.add("hidden");
 }
 
 function showSection(id, button) {
+  const target = document.getElementById(id);
+  if (!target) {
+    console.error("Section not found:", id);
+    return;
+  }
+
   document.querySelectorAll(".content").forEach(section => {
     section.classList.add("hidden");
   });
-  document.getElementById(id).classList.remove("hidden");
+  target.classList.remove("hidden");
 
   document.querySelectorAll("#menu button").forEach(btn => {
     btn.classList.remove("active");
   });
-  button.classList.add("active");
+  if (button) button.classList.add("active");
 
+  if (id === "addresses") renderAddresses();
   window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function backToMenu() {
+  document.getElementById("addresses").classList.add("hidden");
+  document.querySelectorAll("#menu button").forEach(btn => btn.classList.remove("active"));
+  document.getElementById("menu").scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 function addItem(container, title, lines) {
@@ -567,29 +489,66 @@ function renderAll() {
   const noteList = document.getElementById("noteList");
   noteList.replaceChildren();
   notes.forEach(n => addItem(noteList, n.title, [n.text]));
+
+  renderAddresses();
 }
 
 function renderStudents() {
   const list = document.getElementById("studentList");
+  const search = document.getElementById("studentSearch");
+  if (!list || !search) return;
+
   list.replaceChildren();
+  const query = search.value.trim().toLowerCase();
+  const filtered = students.filter(s => s.name.toLowerCase().includes(query));
 
-  const query = document.getElementById("studentSearch").value
-    .trim().toLowerCase();
-
-  const filtered = students.filter(s =>
-    s.name.toLowerCase().includes(query)
-  );
-
-  if (filtered.length === 0) {
+  if (!filtered.length) {
     const p = document.createElement("p");
-    p.textContent = "No students found.";
+    p.className = "muted";
+    p.textContent = "No learning usernames have been added yet.";
     list.appendChild(p);
     return;
   }
 
-  filtered.forEach(s =>
-    addItem(list, s.name, ["Khan Academy username: " + s.username])
-  );
+  filtered.forEach(s => {
+    addItem(list, s.name, ["Khan Academy username: " + s.username]);
+  });
+}
+
+function renderAddresses() {
+  const list = document.getElementById("addressList");
+  const search = document.getElementById("addressSearch");
+  const count = document.getElementById("addressCount");
+  if (!list || !search || !count) return;
+
+  const query = search.value.trim().toLowerCase();
+  const filtered = directoryNames.filter(name => name.toLowerCase().includes(query));
+
+  list.replaceChildren();
+  count.textContent = filtered.length + " students found";
+
+  if (!filtered.length) {
+    const message = document.createElement("p");
+    message.className = "muted";
+    message.textContent = "No students found. Try another name.";
+    list.appendChild(message);
+    return;
+  }
+
+  filtered.forEach(name => {
+    const card = document.createElement("article");
+    card.className = "student-card";
+
+    const letter = document.createElement("div");
+    letter.className = "student-letter";
+    letter.textContent = name.charAt(0).toUpperCase();
+
+    const label = document.createElement("strong");
+    label.textContent = name;
+
+    card.append(letter, label);
+    list.appendChild(card);
+  });
 }
 
 renderAll();
