@@ -224,27 +224,27 @@ footer strong { color: var(--dark); }
       <p class="muted">Revision points and study resources.</p>
       <div id="noteList"></div>
     </section>
-    <button onclick="openSection('addresses',this)">
-  <span class="emoji">👥</span>
-  Student Directory
-  <small>Names & addresses</small>
-    </button>
 <section class="card content hidden" id="addresses">
-  <h2>👥 Student Directory</h2>
-  <p class="muted">
-    Student names and contact details.
-  </p>
+  <button class="back" onclick="backToDirectory()">← All sections</button>
 
-  <input
-    id="addressSearch"
-    placeholder="Search student name..."
-    oninput="renderAddresses()"
-  >
+  <div class="directory-header">
+    <div class="directory-icon">🎓</div>
+    <h2>Student Directory</h2>
+    <p>Get to know your classmates</p>
+  </div>
 
-  <div id="addressList"></div>
-  <p class="muted">
-    For student privacy, home addresses should only be
-    available to authorized people.
+  <input id="addressSearch"
+         placeholder="🔍 Search by student name..."
+         oninput="renderAddresses()">
+
+  <p id="addressCount" class="muted"></p>
+  <div id="addressList" class="student-grid"></div>
+
+  <div id="studentDetails" class="hidden">
+    <button class="back" onclick="backToDirectory()">← Back to students</button>
+    <div id="detailCard"></div>
+  </div>
+</section>
   </p>
 </section>
     <button class="primary" onclick="logout()">Log out</button>
