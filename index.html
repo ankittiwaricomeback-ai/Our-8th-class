@@ -232,20 +232,21 @@ footer strong { color: var(--dark); }
       <p class="muted">Revision points and study resources.</p>
       <div id="noteList"></div>
     </section>
-    section class="card content hidden" id="addresses">
-    <button class="back" type="button" onclick="backToMenu()">← Back to Menu</button>
-    <div class="directory-header">
-      <div class="directory-icon">🎓</div>
-      <h2>Student Directory</h2>
-      <p>Find classmates by name</p>
-    </div>
-    <input id="addressSearch" type="search"
-      placeholder="🔍 Search student name..."
-      aria-label="Search student names" oninput="renderAddresses()">
-    <p id="addressCount" class="muted" aria-live="polite"></p>
-    <div id="addressList" class="student-grid"></div>
-    <p class="muted">Names only. Phone numbers and home addresses are not displayed.</p>
-  </section>
+    
+<!-- SECTION 5: STUDENT DIRECTORY -->
+<section class="card content hidden" id="directory">
+  <h2>👥 Student Directory</h2>
+  <p class="muted">Search students by name or roll number.</p>
+
+  <input
+    id="directorySearch"
+    placeholder="Search name or roll number..."
+    oninput="renderDirectory()"
+  >
+
+  <div id="directoryList"></div>
+</section>
+    
 </section>
 
     <button class="primary" onclick="logout()">Log out</button>
