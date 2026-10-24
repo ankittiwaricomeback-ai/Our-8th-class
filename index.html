@@ -232,7 +232,23 @@ footer strong { color: var(--dark); }
     <button class="primary" onclick="logout()">Log out</button>
   </section>
 </main>
-
+section class="card content hidden" id="addresses">
+    <button class="back" type="button" onclick="backToMenu()">← Back to Menu</button>
+    <div class="directory-header">
+      <div class="directory-icon">🎓</div>
+      <h2>Student Directory</h2>
+      <p>Find classmates by name</p>
+    </div>
+    <input id="addressSearch" type="search"
+      placeholder="🔍 Search student name..."
+      aria-label="Search student names" oninput="renderAddresses()">
+    <p id="addressCount" class="muted" aria-live="polite"></p>
+    <div id="addressList" class="student-grid"></div>
+    <p class="muted">Names only. Phone numbers and home addresses are not displayed.</p>
+  </section>
+</section>
+</main>
+  
 <footer>
   <p>Made for our class</p>
   <p><strong>Created by Ankit Tiwari</strong></p>
