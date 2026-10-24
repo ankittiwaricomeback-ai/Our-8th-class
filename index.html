@@ -507,48 +507,32 @@ function renderAll() {
   exams.forEach(e => addItem(examList, e.subject, [e.date, e.details]));
 
   
-notes.forEach(n => {
-  addItem(noteList, n.title, [n.text]);
-
-  const item = noteList.lastElementChild;
-
-  if (n.pdf) {
-    const link = document.createElement("a");
-    link.href = n.pdf;
-    link.target = "_blank";
-    link.rel = "noopener";
-    link.textContent = "📄 Open PDF Notes";
-    link.style.display = "inline-block";
-    link.style.marginTop = "10px";
-    link.style.color = "#176ba7";
-    link.style.fontWeight = "bold";
-
-    item.appendChild(link);
-  }
-});
-  
+const noteList = document.getElementById("noteList");
+  noteList.replaceChildren();
+  notes.forEach(n => addItem(noteList, n.title, [n.text]));
+}
 
 function renderStudents() {
-  const list = document.getElementById("studentList");
-  list.replaceChildren();
+  const list = document.getElementById("studentList");
+  list.replaceChildren();
 
-  const query = document.getElementById("studentSearch").value
-    .trim().toLowerCase();
+  const query = document.getElementById("studentSearch").value
+    .trim().toLowerCase();
 
-  const filtered = students.filter(s =>
-    s.name.toLowerCase().includes(query)
-  );
+  const filtered = students.filter(s =>
+    s.name.toLowerCase().includes(query)
+  );
 
-  if (filtered.length === 0) {
-    const p = document.createElement("p");
-    p.textContent = "No students found.";
-    list.appendChild(p);
-    return;
-  }
+  if (filtered.length === 0) {
+    const p = document.createElement("p");
+    p.textContent = "No students found.";
+    list.appendChild(p);
+    return;
+  }
 
-  filtered.forEach(s =>
-    addItem(list, s.name, ["Khan Academy username: " + s.username])
-  );
+  filtered.forEach(s =>
+    addItem(list, s.name, ["Khan Academy username: " + s.username])
+  );
 }
 
 renderAll();
