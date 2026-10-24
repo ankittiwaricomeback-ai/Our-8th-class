@@ -372,6 +372,67 @@ const notes = [
   { title: "English", text: "Add your English revision notes here." }
 ];
 
+  const directoryStudents = [
+  { name: "Aditi Kuchekar", roll: "1" },
+  { name: "Aliya Ansari", roll: "2" },
+  { name: "Alika Khan", roll: "3" },
+  { name: "Altamash Khan", roll: "4" },
+  { name: "Anjali Gupta", roll: "5" },
+  { name: "Ankit Tiwari", roll: "6" },
+  { name: "Arfa At Shaikh", roll: "7" },
+  { name: "Arham Khan", roll: "8" },
+  { name: "Ashraf Khan", roll: "9" },
+  { name: "Awasaf Shaikh", roll: "10" },
+  { name: "Dinesh Kahar", roll: "11" },
+  { name: "Fardin Khan", roll: "12" },
+  { name: "Hanif Idrisi", roll: "13" },
+  { name: "Komal Gupta", roll: "14" },
+  { name: "Mahak Pasi", roll: "15" },
+  { name: "Md Savir", roll: "16" },
+  { name: "Misbah Khan", roll: "17" },
+  { name: "Mudassir Shaikh", roll: "18" },
+  { name: "Payal Chaudhari", roll: "19" },
+  { name: "Raza Khan", roll: "20" },
+  { name: "Riya God", roll: "21" },
+  { name: "Rizwa Chawan", roll: "22" },
+  { name: "Sadiya Shaikh", roll: "23" },
+  { name: "Saima Saifi", roll: "24" },
+  { name: "Samiya Shaikh", roll: "25" },
+  { name: "Sanno", roll: "26" },
+  { name: "Sarthak Mohite", roll: "27" },
+  { name: "Shad Khan", roll: "28" },
+  { name: "Sk Ashik Ali", roll: "29" },
+  { name: "Sufiyan Khan", roll: "30" },
+  { name: "Sumayya Ansari", roll: "31" },
+  { name: "Vaish Khan", roll: "32" },
+  { name: "Vikas Komal Kamat", roll: "33" },
+  { name: "Zohra Shaikh", roll: "34" },
+  { name: "Zuber Rajput", roll: "35" }
+];
+
+function renderDirectory() {
+  const list = document.getElementById("directoryList");
+  list.replaceChildren();
+
+  const query = document.getElementById("directorySearch")
+    .value.trim().toLowerCase();
+
+  const filtered = directoryStudents.filter(student =>
+    student.name.toLowerCase().includes(query) ||
+    student.roll.includes(query)
+  );
+
+  if (filtered.length === 0) {
+    const message = document.createElement("p");
+    message.textContent = "No students found.";
+    list.appendChild(message);
+    return;
+  }
+
+  filtered.forEach(student => {
+    addItem(list, "Roll No. " + student.roll, [student.name]);
+  });
+}
 function login() {
   const value = document.getElementById("password").value;
   if (value === CLASS_PASSWORD) {
@@ -389,6 +450,8 @@ document.getElementById("password").addEventListener("keydown", event => {
   if (event.key === "Enter") login();
 });
 
+
+  
 function logout() {
   document.getElementById("portal").classList.add("hidden");
   document.getElementById("login").classList.remove("hidden");
