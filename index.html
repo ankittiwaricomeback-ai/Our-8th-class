@@ -461,6 +461,48 @@ footer strong { color: var(--dark); }
   <div id="directoryList"></div>
 </section>
     
+<!-- STORY BOOK SECTION -->
+<section class="card content hidden book-section" id="storybook">
+  <h2>📖 Our School Story Book</h2>
+  <p class="muted">
+    A collection of stories, memories, and moments from our school.
+  </p>
+
+  <div class="book-stage">
+    <div class="story-book" id="storyBook">
+      <div class="story-page story-cover" id="storyCover">
+        <div class="cover-icon">📚</div>
+        <h2>Our School Story Book</h2>
+        <p>
+          Stories, memories, and adventures
+          from our school life.
+        </p>
+        <p>Tap the right side to begin →</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-progress">
+    <div class="story-progress-bar" id="storyProgressBar"></div>
+  </div>
+
+  <p id="storyPageCount" class="muted">Cover</p>
+
+  <div class="story-controls">
+    <button id="storyPrev" onclick="previousStoryPage()" disabled>
+      ← Previous
+    </button>
+
+    <button id="storyNext" onclick="nextStoryPage()">
+      Next →
+    </button>
+  </div>
+
+  <p class="story-hint">
+    Tap the left or right side of the book, or swipe to turn pages.
+  </p>
+</section>
+    
 </section>
 
     <button class="primary" onclick="logout()">Log out</button>
