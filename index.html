@@ -512,6 +512,26 @@ const noteList = document.getElementById("noteList");
   notes.forEach(n => addItem(noteList, n.title, [n.text]));
 }
 
+notes.forEach(n => {
+  addItem(noteList, n.title, [n.text]);
+
+  const item = noteList.lastElementChild;
+
+  if (n.pdf) {
+    const link = document.createElement("a");
+    link.href = n.pdf;
+    link.target = "_blank";
+    link.rel = "noopener";
+    link.textContent = "📄 Open PDF Notes";
+    link.style.display = "inline-block";
+    link.style.marginTop = "10px";
+    link.style.color = "#176ba7";
+    link.style.fontWeight = "bold";
+
+    item.appendChild(link);
+  }
+});
+  
 function renderStudents() {
   const list = document.getElementById("studentList");
   list.replaceChildren();
