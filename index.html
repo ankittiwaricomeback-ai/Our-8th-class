@@ -12,13 +12,30 @@
   --bg: #f1f6fc;
   --border: #dce6ef;
 }
-* { box-sizing: border-box; }
+/* YOUR OLD CSS */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: var(--bg);
-  color: var(--dark);
 }
+
+/* PASTE NEW BOOK CSS HERE */
+
+.book-container {
+  max-width: 500px;
+  margin: 25px auto;
+  perspective: 1500px;
+}
+
+.book {
+  position: relative;
+  width: 100%;
+  min-height: 480px;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Continue the remaining book CSS here */
 header {
   padding: 34px 22px 55px;
   color: white;
@@ -139,6 +156,9 @@ footer strong { color: var(--dark); }
   .menu { grid-template-columns: repeat(4,minmax(0,1fr)); }
   h1 { font-size: 39px; }
 }
+
+
+
 </style>
 </head>
 <body>
