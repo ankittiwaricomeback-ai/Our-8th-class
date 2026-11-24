@@ -200,6 +200,11 @@ footer strong { color: var(--dark); }
   Student Directory
   <small>Names and roll numbers</small>
 </button>
+    <button onclick="showSection('classbook',this)">
+  <span class="emoji">📖</span>
+  Class Memories
+  <small>25-page photo book</small>
+    </button>
   
   </nav>
 
@@ -246,6 +251,55 @@ footer strong { color: var(--dark); }
 
   <div id="directoryList"></div>
 </section>
+    
+<!-- CLASS PHOTO BOOK -->
+<section class="card content hidden" id="classbook">
+
+  <h2>📖 Our Class Memories</h2>
+  <p class="muted">
+    Every page holds a beautiful class memory.
+  </p>
+
+  <div class="book-container">
+
+    <div class="book" id="photoBook">
+      <div class="book-page" id="bookPage">
+
+        <h3>Our Class Memories</h3>
+
+        <img
+          src="class-photos/page1.jpg"
+          alt="Class memory"
+          id="bookImage"
+        >
+
+        <p id="bookCaption">
+          Welcome to our class photo book!
+        </p>
+
+      </div>
+    </div>
+
+    <div class="page-counter" id="pageCounter">
+      Page 1 / 25
+    </div>
+
+    <div class="book-controls">
+
+      <button id="prevPage" onclick="changePage(-1)">
+        ← Previous
+      </button>
+
+      <button id="nextPage" onclick="changePage(1)">
+        Next →
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+    
     
 </section>
 
@@ -506,6 +560,79 @@ function renderAll() {
   examList.replaceChildren();
   exams.forEach(e => addItem(examList, e.subject, [e.date, e.details]));
 
+  
+// YOUR 25-PAGE CLASS PHOTO BOOK
+
+const bookPages = [
+  { image: "page1.jpg", caption: "Our Class Memories" },
+  { image: "page2.jpg", caption: "Beautiful Memories" },
+  { image: "page3.jpg", caption: "Our Classroom" },
+  { image: "page4.jpg", caption: "Friends Forever" },
+  { image: "page5.jpg", caption: "School Days" },
+  { image: "page6.jpg", caption: "Our Group Photos" },
+  { image: "page7.jpg", caption: "Happy Moments" },
+  { image: "page8.jpg", caption: "Class Activities" },
+  { image: "page9.jpg", caption: "Our Teachers" },
+  { image: "page10.jpg", caption: "Fun Together" },
+  { image: "page11.jpg", caption: "Unforgettable Days" },
+  { image: "page12.jpg", caption: "Class Celebration" },
+  { image: "page13.jpg", caption: "Our Friends" },
+  { image: "page14.jpg", caption: "School Memories" },
+  { image: "page15.jpg", caption: "Special Moments" },
+  { image: "page16.jpg", caption: "Our Adventures" },
+  { image: "page17.jpg", caption: "Class Events" },
+  { image: "page18.jpg", caption: "Together Forever" },
+  { image: "page19.jpg", caption: "Happy Faces" },
+  { image: "page20.jpg", caption: "Golden Memories" },
+  { image: "page21.jpg", caption: "Our Best Days" },
+  { image: "page22.jpg", caption: "Class Memories" },
+  { image: "page23.jpg", caption: "Amazing Friends" },
+  { image: "page24.jpg", caption: "Never Forget" },
+  { image: "page25.jpg", caption: "The End ❤️" }
+];
+
+let currentPage = 0;
+
+function displayPage() {
+
+  const page = bookPages[currentPage];
+
+  const bookPage = document.getElementById("bookPage");
+
+  // Restart animation
+  bookPage.style.animation = "none";
+  void bookPage.offsetWidth;
+  bookPage.style.animation = "pageOpen 0.5s ease";
+
+  document.getElementById("bookImage").src =
+    "class-photos/" + page.image;
+
+  document.getElementById("bookCaption").textContent =
+    page.caption;
+
+  document.getElementById("pageCounter").textContent =
+    "Page " + (currentPage + 1) + " / 25";
+
+  document.getElementById("prevPage").disabled =
+    currentPage === 0;
+
+  document.getElementById("nextPage").disabled =
+    currentPage === 24;
+}
+
+function changePage(direction) {
+
+  const next = currentPage + direction;
+
+  if (next < 0 || next >= bookPages.length) return;
+
+  currentPage = next;
+
+  displayPage();
+}
+
+// Show first page
+displayPage();
   
 const noteList = document.getElementById("noteList");
   noteList.replaceChildren();
