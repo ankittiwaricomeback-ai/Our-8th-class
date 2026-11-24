@@ -300,6 +300,81 @@ footer strong { color: var(--dark); }
 
 </section>
     
+/* CLASS PHOTO BOOK */
+.book-container {
+  max-width: 500px;
+  margin: 25px auto;
+  perspective: 1500px;
+}
+
+.book {
+  position: relative;
+  width: 100%;
+  min-height: 480px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 12px 35px #17344a30;
+  transform-style: preserve-3d;
+  overflow: hidden;
+}
+
+.book-page {
+  padding: 18px;
+  text-align: center;
+  animation: pageOpen 0.5s ease;
+}
+
+.book-page img {
+  width: 100%;
+  height: 350px;
+  object-fit: contain;
+  background: #edf2f7;
+  border-radius: 8px;
+}
+
+.book-page h3 {
+  margin: 15px 0 5px;
+  color: #176ba7;
+}
+
+.book-page p {
+  color: #718096;
+}
+
+@keyframes pageOpen {
+  from {
+    opacity: 0;
+    transform: rotateY(-15deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotateY(0deg);
+  }
+}
+
+.book-controls {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.book-controls button {
+  background: #176ba7;
+  color: white;
+  padding: 14px;
+}
+
+.book-controls button:disabled {
+  background: #aab8c5;
+  cursor: not-allowed;
+}
+
+.page-counter {
+  text-align: center;
+  font-weight: bold;
+  margin: 15px;
+}
+    
     
 </section>
 
